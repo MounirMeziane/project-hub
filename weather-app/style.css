@@ -1,0 +1,420 @@
+@property --tint {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #1A1A2E;
+}
+
+:root {
+  --ink: #1A1A2E;
+  --gray: #6B6F80;
+  --line: #E6E6EF;
+  --purple: #7C3AED;
+  --violet: #A78BFA;
+  --blue: #3B82F6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: Manrope, sans-serif;
+  font-size: 18px;
+  background: linear-gradient(160deg, #F5F3FF, #EFF6FF);
+}
+
+/* ----- weather colors ----- */
+body.sunny {
+  --tint: #EAB308;
+}
+
+body.cloudy {
+  --tint: #3B82F6;
+}
+
+body.rainy {
+  --tint: #1D4ED8;
+}
+
+body.snowy {
+  --tint: #8A90A0;
+}
+
+body.clear {
+  --tint: #6366F1;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 56px 24px;
+}
+
+/* ----- title ----- */
+.title {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: Syne, sans-serif;
+  font-size: 72px;
+  line-height: 1;
+  margin: 0 0 32px;
+}
+
+.word {
+  background: linear-gradient(90deg, var(--tint) 0%, var(--tint) 14%, var(--ink) 56%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: --tint .9s;
+}
+
+/* ----- search ----- */
+form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+input {
+  flex: 1;
+  padding: 18px 20px;
+  font: inherit;
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--purple);
+}
+
+button {
+  padding: 18px 28px;
+  border: 0;
+  border-radius: 16px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(100deg, var(--purple), var(--blue));
+  transition: transform .3s, box-shadow .3s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(124, 58, 237, .3);
+}
+
+/* ----- current weather card ----- */
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 36px;
+  margin-bottom: 24px;
+}
+
+.place {
+  font-weight: 700;
+  color: var(--gray);
+  margin: 0 0 8px;
+}
+
+.temp {
+  font-family: Syne, sans-serif;
+  font-size: 112px;
+  line-height: 1;
+  color: var(--tint);
+  transition: --tint .9s;
+}
+
+/* ----- 5-day forecast ----- */
+#forecast {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+.day {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 20px 12px;
+  text-align: center;
+  transition: transform .3s, border-color .3s;
+}
+
+.day:hover {
+  transform: translateY(-5px);
+  border-color: var(--violet);
+}
+
+.icon {
+  font-size: 36px;
+  margin: 8px 0;
+}
+
+/* ----- the sky icon ----- */
+.sky {
+  width: 80px;
+  height: 80px;
+  flex: none;
+  cursor: pointer;
+  transition: width .8s, height .8s;
+}
+
+.sky svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.sky svg * {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.sun circle {
+  fill: #FBBF24;
+}
+
+.rays line {
+  stroke: #FBBF24;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.moon {
+  fill: #C7D2FE;
+  stroke: #A5B4FC;
+  stroke-width: 1;
+}
+
+.stars circle {
+  fill: #A5B4FC;
+}
+
+.cloud {
+  fill: #EEF0F4;
+  stroke: #C7C9D6;
+  stroke-width: 1.5;
+}
+
+.drops line {
+  stroke: #3B82F6;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.flakes circle {
+  fill: #fff;
+  stroke: #9CA3AF;
+  stroke-width: 1;
+}
+
+.sun,
+.rays,
+.moon,
+.stars,
+.cloud,
+.drops,
+.flakes {
+  transition: transform .6s, opacity .5s, fill .5s;
+}
+
+.rays,
+.moon,
+.stars,
+.drops,
+.flakes {
+  opacity: 0;
+}
+
+/* DEFAULT (daytime): hover = cloud leaves, sun comes out */
+.sky:hover .cloud {
+  transform: translateX(30px);
+  opacity: 0;
+}
+
+.sky:hover .sun {
+  transform: scale(1.15);
+}
+
+.sky:hover .rays {
+  opacity: 1;
+  transform: rotate(45deg);
+}
+
+/* SUNNY: sun stays out, spins, grows 3x */
+body.sunny .cloud {
+  transform: translateX(30px);
+  opacity: 0;
+}
+
+body.sunny .sun {
+  transform: scale(1.15);
+}
+
+body.sunny .rays {
+  opacity: 1;
+  animation: spin 14s linear infinite;
+}
+
+body.sunny .sky {
+  width: 240px;
+  height: 240px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* NIGHT: moon replaces sun */
+body.night .sun {
+  opacity: 0;
+}
+
+body.night .moon {
+  opacity: 1;
+}
+
+body.night .sky:hover .rays {
+  opacity: 0;
+}
+
+/* CLEAR NIGHT: cloud leaves, moon + twinkling stars */
+body.clear .cloud {
+  transform: translateX(30px);
+  opacity: 0;
+}
+
+body.clear .stars {
+  opacity: 1;
+  animation: twinkle 2.4s ease-in-out infinite alternate;
+}
+
+body.clear .sky:hover .moon {
+  transform: rotate(-15deg) scale(1.1);
+}
+
+@keyframes twinkle {
+  to {
+    opacity: .3;
+  }
+}
+
+/* CLOUDY / RAIN / SNOW: cloud stays and bobs */
+body.cloudy .sky:hover .cloud,
+body.rainy .sky:hover .cloud,
+body.snowy .sky:hover .cloud {
+  transform: translateY(-3px);
+  opacity: 1;
+}
+
+body.cloudy .sky:hover .rays,
+body.rainy .sky:hover .rays,
+body.snowy .sky:hover .rays {
+  opacity: 0;
+}
+
+body.cloudy .sky:hover .sun,
+body.rainy .sky:hover .sun,
+body.snowy .sky:hover .sun {
+  transform: none;
+}
+
+body.rainy .cloud {
+  fill: #9AA3B8;
+}
+
+body.snowy .cloud {
+  fill: #D5D9E0;
+}
+
+/* RAIN / SNOW: falling on hover */
+body.rainy .sky:hover .drops,
+body.snowy .sky:hover .flakes {
+  opacity: 1;
+}
+
+body.rainy .sky:hover .drops line {
+  animation-name: fall;
+  animation-duration: .7s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+body.snowy .sky:hover .flakes circle {
+  animation-name: fall;
+  animation-duration: 1.6s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.drops line:nth-child(2),
+.flakes circle:nth-child(2) {
+  animation-delay: -.25s;
+}
+
+.drops line:nth-child(3),
+.flakes circle:nth-child(3) {
+  animation-delay: -.5s;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-4px);
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+}
+
+/* ----- phones ----- */
+@media (max-width: 640px) {
+  .title {
+    font-size: 48px;
+  }
+
+  .sky {
+    width: 56px;
+    height: 56px;
+  }
+
+  body.sunny .sky {
+    width: 150px;
+    height: 150px;
+  }
+
+  .temp {
+    font-size: 80px;
+  }
+
+  #forecast {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.time {
+  font-weight: 500;
+  opacity: .7;
+}
+
+.time::before {
+  content: "·";
+  margin: 0 8px;
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mounir Meziane Projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="site.css">
+</head>
+
+<body data-page="projects">
+
+  <main>
+    <div class="page-head">
+      <h1>My <span class="grad">projects</span></h1>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <footer class="site"><span>Mounir Meziane</span><span>Built from scratch</span></footer>
+
+  <script src="projects.js"></script>
+  <script src="site.js"></script>
+  <script>
+    const SLOTS = 6; // empty squares shown until projects fill them
+    const grid = document.getElementById("grid");
+    const list = window.PROJECTS || [];
+
+    const real = list.map((p, i) => `
+    <a class="tile" href="project.html#${esc(p.id)}" style="animation-delay:${i * 70}ms">
+      <div class="art" style="background-image:url('${esc(p.image)}'), linear-gradient(135deg,#DDD6FE,#BFDBFE)"></div>
+      <div class="shine"></div>
+      <div class="info"><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p></div>
+    </a>`);
+
+    const empty = Array.from({ length: Math.max(0, SLOTS - list.length) }, (_, i) => `
+    <div class="tile slot" style="animation-delay:${(list.length + i) * 70}ms" aria-label="Empty project slot">
+      <span class="num">${String(list.length + i + 1).padStart(2, "0")}</span>
+      <div class="shape"></div>
+      <div class="shine"></div>
+      <div class="info"><h3>Coming soon</h3><p>Next project goes here</p></div>
+    </div>`);
+
+    grid.innerHTML = real.concat(empty).join("");
+    document.getElementById("count").textContent = list.length
+      ? `${list.length} project${list.length > 1 ? "s" : ""}`
+      : "First project in progress";
+    enableTilt(grid);
+  </script>
+</body>
+
+</html>

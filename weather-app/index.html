@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather · Mounir Meziane</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main>
+    <h1 class="title">
+      <span class="sky" aria-hidden="true">
+        <svg viewBox="0 0 64 64">
+          <g class="stars">
+            <circle cx="46" cy="8" r="1.6" />
+            <circle cx="54" cy="18" r="1.2" />
+            <circle cx="40" cy="15" r="1" />
+          </g>
+          <path class="moon" d="M26 13A11 11 0 0 0 26 35A14 14 0 0 1 26 13z" />
+          <g class="sun">
+            <circle cx="26" cy="24" r="11" />
+            <g class="rays">
+              <line x1="26" y1="9" x2="26" y2="5" />
+              <line x1="26" y1="39" x2="26" y2="43" />
+              <line x1="11" y1="24" x2="7" y2="24" />
+              <line x1="41" y1="24" x2="45" y2="24" />
+              <line x1="36.6" y1="13.4" x2="39.4" y2="10.6" />
+              <line x1="15.4" y1="13.4" x2="12.6" y2="10.6" />
+              <line x1="36.6" y1="34.6" x2="39.4" y2="37.4" />
+              <line x1="15.4" y1="34.6" x2="12.6" y2="37.4" />
+            </g>
+          </g>
+          <path class="cloud" d="M20 52h26a9 9 0 0 0 1-18 13 13 0 0 0-25-4 10 10 0 0 0-2 22z" />
+          <g class="drops">
+            <line x1="28" y1="56" x2="26" y2="61" />
+            <line x1="36" y1="56" x2="34" y2="61" />
+            <line x1="44" y1="56" x2="42" y2="61" />
+          </g>
+          <g class="flakes">
+            <circle cx="27" cy="58" r="2" />
+            <circle cx="35" cy="60" r="2" />
+            <circle cx="43" cy="58" r="2" />
+          </g>
+        </svg>
+      </span>
+      <span class="word">Weather</span>
+    </h1>
+
+    <form id="search">
+      <input id="city" placeholder="Search a city…" autocomplete="off">
+      <button>Search</button>
+    </form>
+
+    <section id="current" class="card">
+      <p>Search a city to see the weather.</p>
+    </section>
+
+    <section id="forecast"></section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

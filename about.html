@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>About Mounir Meziane</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="site.css">
+  <style>
+    .about {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 48px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .about h1 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(48px, 9vw, 104px);
+      line-height: .9;
+      letter-spacing: -.03em;
+      margin: 0 0 22px;
+    }
+
+    .about h1 .grad {
+      background: linear-gradient(100deg, var(--purple), var(--blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+      transition: transform .4s var(--ease);
+    }
+
+    .about h1:hover .grad {
+      transform: translateX(8px) skewX(-6deg);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .chip {
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform .3s var(--ease), border-color .2s, color .2s;
+    }
+
+    .chip:hover {
+      transform: translateY(-3px);
+      border-color: var(--violet);
+      color: var(--purple);
+    }
+
+    .lead {
+      font-size: 19px;
+      color: var(--gray);
+      max-width: 46ch;
+      margin: 0;
+    }
+
+    .photo {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      max-width: 100%;
+      border-radius: 32px;
+      overflow: hidden;
+      background: linear-gradient(150deg, #EDE9FE, #DBEAFE 60%, #F3F4F6);
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      transition: transform .6s var(--ease), border-radius .6s var(--ease), box-shadow .5s;
+    }
+
+    .photo:hover {
+      transform: rotate(-2deg) scale(1.02);
+      border-radius: 44px;
+      box-shadow: 0 30px 60px rgba(124, 58, 237, .18);
+    }
+
+    .photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo .ph {
+      text-align: center;
+      color: #8B86A8;
+      font-family: var(--mono);
+      font-size: 13px;
+      display: grid;
+      gap: 10px;
+      place-items: center;
+    }
+
+    .photo .ph svg {
+      width: 54px;
+      height: 54px;
+      opacity: .6;
+    }
+
+    .ring {
+      position: absolute;
+      width: 140%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1px dashed rgba(124, 58, 237, .25);
+      animation: spin 40s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .chapters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+      margin-top: 72px;
+    }
+
+    .chapter {
+      padding: 28px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .75);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(6px);
+      transition: transform .4s var(--ease), border-color .3s, box-shadow .4s;
+    }
+
+    .chapter:hover {
+      transform: translateY(-6px);
+      border-color: var(--violet);
+      box-shadow: 0 20px 44px rgba(124, 58, 237, .14);
+    }
+
+    .chapter .k {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--purple);
+    }
+
+    .chapter h2 {
+      font-family: var(--display);
+      font-size: 28px;
+      margin: 8px 0 10px;
+      line-height: 1.1;
+    }
+
+    .chapter p {
+      margin: 0;
+      color: var(--gray);
+    }
+
+    .soon {
+      display: inline-block;
+      margin-top: 14px;
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--tint);
+      color: var(--purple);
+    }
+
+    @media (max-width: 820px) {
+      .about {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .photo {
+        max-width: 360px;
+      }
+    }
+  </style>
+</head>
+
+<body data-page="about">
+
+  <main>
+    <section class="about">
+      <div>
+        <h1>About <span class="grad">me</span></h1>
+        <div class="chips">
+          <span class="chip">Software Engineering</span>
+          <span class="chip">University of Ottawa</span>
+          <span class="chip">Class of 2030</span>
+          <span class="chip">Ottawa, Canada</span>
+        </div>
+        <p class="lead">I'm Mounir, a software engineering student at uOttawa. This is where I'll tell you who I am and
+          why I build things.</p>
+      </div>
+      <div class="photo">
+        <div class="ring" aria-hidden="true"></div>
+        <!-- To add your photo: put it in assets/images/ and uncomment the next line -->
+        <!-- <img src="assets/images/me.jpg" alt="Mounir Meziane"> -->
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" />
+          </svg>Your photo goes here</div>
+      </div>
+    </section>
+
+    <section class="chapters">
+      <article class="chapter">
+        <span class="k">Chapter 1</span>
+        <h2>My story</h2>
+        <p>Where I come from and what got me here.</p>
+        <span class="soon">Writing this together soon</span>
+      </article>
+      <article class="chapter">
+        <span class="k">Chapter 2</span>
+        <h2>Why software engineering</h2>
+        <p>What pulled me into building software.</p>
+        <span class="soon">Writing this together soon</span>
+      </article>
+      <article class="chapter">
+        <span class="k">Chapter 3</span>
+        <h2>What's next</h2>
+        <p>The projects and goals I'm working toward.</p>
+        <span class="soon">Writing this together soon</span>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site"><span>Mounir Meziane</span><a href="index.html">← Back to projects</a></footer>
+
+  <script src="projects.js"></script>
+  <script src="site.js"></script>
+</body>
+
+</html>
